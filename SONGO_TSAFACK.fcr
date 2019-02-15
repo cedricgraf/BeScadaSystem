@@ -1,0 +1,768 @@
+
+//---------------------------------------------
+// Traducteur vers Fiacre Version 1.0  Wed Jan 24 18:05:44 CET 2018
+// 
+// Generation dans : 
+//  C:\Philippe\Dev_Et_Outils\OBPExplorer\ExemplesFiacre_CDL\PatternsSecuPhD\PhD_Modeles\Scada_Async_Genere/HDLScada_Async_archi.fcr
+//-------------------------------------------------------
+//  Modele genere automatiqement mais n'integrant (pas encore) les 
+//  patrons de securité 
+//  (generation automatique en cours de developpement)
+//---------------------------------------------
+
+const NbLC: nat is 2
+const SIZE_FIFO: nat is 4
+
+
+type T_id is union ADMIN| GC_OWNER| LC1_OWNER| LC2_OWNER| UNKNOWN| GC| Network| LC1| LC2| ID_NUL| ID_END end union
+
+type T_oper is union READ| WRITE| ACK| NACK| OP_NUL| DENIED end union
+
+type T_resource is union V1| V2| GC_RES| Network_RES| LC1_RES| LC2_RES| RES_NUL end union
+
+type T_req is record 
+	source: T_id
+	, target: T_id
+	, oper: T_oper
+	, resource:T_resource
+	, sign: int 
+	, obj: int end record
+
+type t_fifo_req is queue SIZE_FIFO of T_req
+
+type t_fifo_ret is queue SIZE_FIFO of T_req
+
+
+//----------------------------------------
+//      Inclusion de : C:\Philippe\Dev_Et_Outils\OBPExplorer\ExemplesFiacre_CDL\PatternsSecuPhD\PhD_Modeles\Scada_Async_Genere/constantes.fcr
+//----------------------------------------
+
+//---------------------------------------------
+// Genere le :   Wed Jan 24 18:05:44 CET 2018
+// 
+// Dans : 
+//  C:\Philippe\Dev_Et_Outils\OBPExplorer\ExemplesFiacre_CDL\PatternsSecuPhD\PhD_Modeles\Scada_Async_Genere/constantes.fcr
+//---------------------------------------------
+
+const ADMIN_WRITE_LC_Network : T_req is { source = ADMIN, target = LC1, oper = WRITE, resource = V1, obj = 0 , sign = 0 }
+
+ const ADMIN_WRITE_GC : T_req is { source = ADMIN, target = GC, oper = WRITE,resource = V1, obj = 0 , sign = 0}
+ const ADMIN_WRITE_LC1 : T_req is { source = ADMIN, target = LC1, oper = WRITE, resource = V1, obj = 0 , sign = 0 }
+ const ADMIN_WRITE_LC2 : T_req is { source = ADMIN, target = LC2, oper = WRITE, resource = V2, obj = 0 , sign = 0 }
+ const ADMIN_READ_GC : T_req is { source = ADMIN, target = GC, oper = READ, resource = V1, obj = 0 , sign = 0 }
+ const ADMIN_READ_LC1 : T_req is { source = ADMIN, target = LC1, oper = READ, resource = V1, obj = 0 , sign = 0 }
+ const ADMIN_READ_LC2 : T_req is { source = ADMIN, target = LC2, oper = READ, resource = V1, obj = 0 , sign = 0 }
+ const GC_OWNER_WRITE_GC : T_req is { source = GC_OWNER, target = GC, oper = WRITE, resource = V1, obj = 0 , sign = 0 }
+ const GC_OWNER_WRITE_LC1 : T_req is { source = GC_OWNER, target = LC1, oper = WRITE, resource = V1, obj = 0 , sign = 0 }
+ const GC_OWNER_WRITE_LC2 : T_req is { source = GC_OWNER, target = LC2, oper = WRITE, resource = V2, obj = 0 , sign = 0 }
+ const GC_OWNER_READ_GC : T_req is { source = GC_OWNER, target = GC, oper = READ, resource = V1, obj = 0 , sign = 0 }
+ const GC_OWNER_READ_LC1 : T_req is { source = GC_OWNER, target = LC1, oper = READ, resource = V1, obj = 0 , sign = 0 }
+ const GC_OWNER_READ_LC2 : T_req is { source = GC_OWNER, target = LC2, oper = READ, resource = V1, obj = 0 , sign = 0 }
+ const LC1_OWNER_WRITE_GC : T_req is { source = LC1_OWNER, target = GC, oper = WRITE, resource = V1, obj = 0 , sign = 0 }
+ const LC1_OWNER_WRITE_LC1 : T_req is { source = LC1_OWNER, target = LC1, oper = WRITE, resource = V1, obj = 0 , sign = 0 }
+ const LC1_OWNER_WRITE_LC2 : T_req is { source = LC1_OWNER, target = LC2, oper = WRITE, resource = V1, obj = 0 , sign = 0 }
+ const LC1_OWNER_READ_GC : T_req is { source = LC1_OWNER, target = GC, oper = READ, resource = V1, obj = 0 , sign = 0 }
+ const LC1_OWNER_READ_LC1 : T_req is { source = LC1_OWNER, target = LC1, oper = READ, resource = V1, obj = 0 , sign = 0 }
+ const LC1_OWNER_READ_LC2 : T_req is { source = LC1_OWNER, target = LC2, oper = READ, resource = V1, obj = 0 , sign = 0 }
+ const LC2_OWNER_WRITE_GC : T_req is { source = LC2_OWNER, target = GC, oper = WRITE, resource = V1, obj = 0 , sign = 0 }
+ const LC2_OWNER_WRITE_LC1 : T_req is { source = LC2_OWNER, target = LC1, oper = WRITE, resource = V1, obj = 0 , sign = 0 }
+ const LC2_OWNER_WRITE_LC2 : T_req is { source = LC2_OWNER, target = LC2, oper = WRITE, resource = V1, obj = 0 , sign = 0 }
+ const LC2_OWNER_READ_GC : T_req is { source = LC2_OWNER, target = GC, oper = READ, resource = V2, obj = 0 , sign = 0 }
+ const LC2_OWNER_READ_LC1 : T_req is { source = LC2_OWNER, target = LC1, oper = READ, resource = V1, obj = 0 , sign = 0 }
+ const LC2_OWNER_READ_LC2 : T_req is { source = LC2_OWNER, target = LC2, oper = READ, resource = V1, obj = 0 , sign = 0 }
+ const UNKNOWN_WRITE_GC : T_req is { source = UNKNOWN, target = GC, oper = WRITE, resource = V1, obj = 0 , sign = 0 }
+ const UNKNOWN_WRITE_LC1 : T_req is { source = UNKNOWN, target = LC1, oper = WRITE, resource = V1, obj = 0 , sign = 0 }
+ const UNKNOWN_WRITE_LC2 : T_req is { source = UNKNOWN, target = LC2, oper = WRITE, resource = V1, obj = 0 , sign = 0 }
+ const UNKNOWN_READ_GC : T_req is { source = UNKNOWN, target = GC, oper = READ, resource = V1, obj = 0 , sign = 0 }
+ const UNKNOWN_READ_LC1 : T_req is { source = UNKNOWN, target = LC1, oper = READ, resource = V1, obj = 0 , sign = 0 }
+ const UNKNOWN_READ_LC2 : T_req is { source = UNKNOWN, target = LC2, oper = READ, resource = V1, obj = 0 , sign = 0 }
+ const ADMIN_ACK_GC : T_req is { source = GC, target = ADMIN, oper = ACK, resource = V1, obj = 0 , sign = 0 }
+ const ADMIN_ACK_LC1 : T_req is { source = LC1, target = ADMIN, oper = ACK, resource = V1, obj = 0 , sign = 0 }
+ const ADMIN_ACK_LC2 : T_req is { source = LC2, target = ADMIN, oper = ACK, resource = V1, obj = 0 , sign = 0 }
+ const ADMIN_NACK_GC : T_req is { source = GC, target = ADMIN, oper = NACK, resource = V1, obj = 0 , sign = 0 }
+ const ADMIN_NACK_LC1 : T_req is { source = LC1, target = ADMIN, oper = NACK, resource = V1, obj = 0 , sign = 0 }
+ const ADMIN_NACK_LC2 : T_req is { source = LC2, target = ADMIN, oper = NACK, resource = V1, obj = 0 , sign = 0 }
+ const GC_OWNER_ACK_GC : T_req is { source = GC, target = GC_OWNER, oper = ACK, resource = V1, obj = 0 , sign = 0 }
+ const GC_OWNER_ACK_LC1 : T_req is { source = LC1, target = GC_OWNER, oper = ACK, resource = V1, obj = 0 , sign = 0 }
+ const GC_OWNER_ACK_LC2 : T_req is { source = LC2, target = GC_OWNER, oper = ACK, resource = V1, obj = 0 , sign = 0 }
+ const GC_OWNER_NACK_GC : T_req is { source = GC, target = GC_OWNER, oper = NACK, resource = V1, obj = 0 , sign = 0 }
+ const GC_OWNER_NACK_LC1 : T_req is { source = LC1, target = GC_OWNER, oper = NACK, resource = V1, obj = 0 , sign = 0 }
+ const GC_OWNER_NACK_LC2 : T_req is { source = LC2, target = GC_OWNER, oper = NACK, resource = V1, obj = 0 , sign = 0 }
+ const LC1_OWNER_ACK_GC : T_req is { source = GC, target = LC1_OWNER, oper = ACK, resource = V1, obj = 0 , sign = 0 }
+ const LC1_OWNER_ACK_LC1 : T_req is { source = LC1, target = LC1_OWNER, oper = ACK, resource = V1, obj = 0 , sign = 0 }
+ const LC1_OWNER_ACK_LC2 : T_req is { source = LC2, target = LC1_OWNER, oper = ACK, resource = V1, obj = 0 , sign = 0 }
+ const LC1_OWNER_NACK_GC : T_req is { source = GC, target = LC1_OWNER, oper = NACK, resource = V1, obj = 0 , sign = 0 }
+ const LC1_OWNER_NACK_LC1 : T_req is { source = LC1, target = LC1_OWNER, oper = NACK, resource = V1, obj = 0 , sign = 0 }
+ const LC1_OWNER_NACK_LC2 : T_req is { source = LC2, target = LC1_OWNER, oper = NACK, resource = V1, obj = 0 , sign = 0 }
+ const LC2_OWNER_ACK_GC : T_req is { source = GC, target = LC2_OWNER, oper = ACK, resource = V1, obj = 0 , sign = 0 }
+ const LC2_OWNER_ACK_LC1 : T_req is { source = LC1, target = LC2_OWNER, oper = ACK, resource = V1, obj = 0 , sign = 0 }
+ const LC2_OWNER_ACK_LC2 : T_req is { source = LC2, target = LC2_OWNER, oper = ACK, resource = V1, obj = 0 , sign = 0 }
+ const LC2_OWNER_NACK_GC : T_req is { source = GC, target = LC2_OWNER, oper = NACK, resource = V1, obj = 0 , sign = 0 }
+ const LC2_OWNER_NACK_LC1 : T_req is { source = LC1, target = LC2_OWNER, oper = NACK, resource = V1, obj = 0 , sign = 0 }
+ const LC2_OWNER_NACK_LC2 : T_req is { source = LC2, target = LC2_OWNER, oper = NACK, resource = V1, obj = 0 , sign = 0 }
+ const UNKNOWN_ACK_GC : T_req is { source = GC, target = UNKNOWN, oper = ACK, resource = V1, obj = 0 , sign = 0 }
+ const UNKNOWN_ACK_LC1 : T_req is { source = LC1, target = UNKNOWN, oper = ACK, resource = V1, obj = 0 , sign = 0 }
+ const UNKNOWN_ACK_LC2 : T_req is { source = LC2, target = UNKNOWN, oper = ACK, resource = V1, obj = 0 , sign = 0 }
+ const UNKNOWN_NACK_GC : T_req is { source = GC, target = UNKNOWN, oper = NACK, resource = V1, obj = 0 , sign = 0 }
+ const UNKNOWN_NACK_LC1 : T_req is { source = LC1, target = UNKNOWN, oper = NACK, resource = V1, obj = 0 , sign = 0 }
+ const UNKNOWN_NACK_LC2 : T_req is { source = LC2, target = UNKNOWN, oper = NACK, resource = V1, obj = 0 , sign = 0 }
+ const REQ_NUL : T_req is { source = ID_NUL, target = ID_NUL, oper = OP_NUL, resource = V1, obj = 0 , sign = 0 }
+ const REQ_END : T_req is { source = ID_NUL, target = ID_END, oper = OP_NUL, resource = V1, obj = 0 , sign = 0 }
+
+
+
+// Signature des processus 
+
+const GC_SIGNATURE: int is 2   
+const NETWORK_SIGNATURE: int is 3   
+const LC1_SIGNATURE: int is 5   
+const LC2_SIGNATURE: int is 7   
+
+//----------------------------------------
+//      Inclusion de : C:\Philippe\Dev_Et_Outils\OBPExplorer\ExemplesFiacre_CDL\PatternsSecuPhD\PhD_Modeles\Scada_Async_Genere/fonctions.fcr
+//----------------------------------------
+//-----------------------------------------------------------------------
+//    Fonction : Retourne true ou false selon les droits de l'Admin
+//    Cette fonction implante les règles de droits d'accessibilite
+//
+//    Entree : requete de type T_req
+//    Retour : true ou false selon les droits
+//-----------------------------------------------------------------------
+	
+function hasRight_Admin (req : T_req) : bool is
+begin
+	case req.target of 
+		GC -> 
+			case req.oper of 
+				READ  -> return true
+			|	WRITE -> return true
+			end
+	|	LC1 -> 
+			case req.oper of 
+				READ  -> return true
+			|	WRITE -> return true
+			end
+	|	LC2 -> 
+			case req.oper of 
+				READ  -> return true
+			|	WRITE -> return true
+			end
+	end;
+	return false
+end
+
+
+//-----------------------------------------------------------------------
+//    Fonction : Retourne true ou false  selon les droits de GC_OWNER
+//
+//    Entree : requete de type T_req
+//-----------------------------------------------------------------------
+	
+function hasRight_GC_OWNER (req : T_req) : bool is
+begin
+	case req.target of 
+		GC -> 
+			case req.oper of 
+				READ  -> return true
+			|	WRITE -> return true
+			end
+	|	LC1 -> 
+			case req.oper of 
+				READ  -> return true
+			|	WRITE -> return false
+			end
+	|	LC2 -> 
+			case req.oper of 
+				READ  -> return true
+			|	WRITE -> return false
+			end
+	end;
+	return false
+end
+
+
+
+//-----------------------------------------------------------------------
+//    Fonction : Retourne true ou false  selon les droits de LC1_OWNER
+//
+//    Entree : requete de type T_req
+//-----------------------------------------------------------------------
+	
+function hasRight_LC1_OWNER (req : T_req) : bool is
+begin
+	case req.target of 
+		GC -> 
+			case req.oper of 
+				READ  -> return false
+			|	WRITE -> return false
+			end
+	|	LC1 -> 
+			case req.oper of 
+				READ  -> return true
+			|	WRITE -> return true
+			end
+	|	LC2 -> 
+			case req.oper of 
+				READ  -> return false
+			|	WRITE -> return false
+			end
+	end;
+	return false
+end
+
+
+//-----------------------------------------------------------------------
+//    Fonction : Retourne true ou false  selon les droits de LC2_OWNER
+//
+//    Entree : requete de type T_req
+//-----------------------------------------------------------------------
+	
+function hasRight_LC2_OWNER (req : T_req) : bool is
+begin
+	case req.target of 
+		GC -> 
+			case req.oper of 
+				READ  -> return false
+			|	WRITE -> return false
+			end
+	|	LC1 -> 
+			case req.oper of 
+				READ  -> return false
+			|	WRITE -> return false
+			end
+	|	LC2 -> 
+			case req.oper of 
+				READ  -> return true
+			|	WRITE -> return true
+			end
+	end;
+	return false
+end
+
+
+//-----------------------------------------------------------------------
+//    Fonction : Retourne true ou false selon les droits de UNKNOWN
+//
+//    Entree : requete de type T_req
+//-----------------------------------------------------------------------
+	
+function hasRight_Unknown (req : T_req) : bool is
+begin
+	case req.target of 
+		GC -> 
+			case req.oper of 
+				READ  -> return false
+			|	WRITE -> return false
+			end
+	|	LC1 -> 
+			case req.oper of 
+				READ  -> return false
+			|	WRITE -> return false
+			end
+	|	LC2 -> 
+			case req.oper of 
+				READ  -> return false
+			|	WRITE -> return false
+			end
+	end;
+	return false
+end
+
+	
+//-----------------------------------------------------------------------
+//    Fonction : Retourne true ou false selon les droits
+//
+//    Entree : requete de type T_req
+//-----------------------------------------------------------------------
+	
+function hasRight (req : T_req) : bool is
+begin
+	case req.source of 
+		ADMIN     -> return (hasRight_Admin (req))
+	|	GC_OWNER  -> return (hasRight_GC_OWNER (req))
+	|	LC1_OWNER -> return (hasRight_LC1_OWNER (req))
+	|	LC2_OWNER -> return (hasRight_LC2_OWNER (req))
+	|	UNKNOWN   -> return (hasRight_Unknown (req))
+	end;
+	return false
+end
+
+
+//-----------------------------------------------------------------------
+//    Fonction : retourne la requete signée
+//
+//    Entree : requete de type T_req
+//-----------------------------------------------------------------------
+	
+function signature (req : T_req, proc_id : T_id) : T_req is
+begin
+	if (req.sign = 0)  then 
+			   req.sign := 1
+		end if;
+	case proc_id of 
+		GC      ->  req.sign := req.sign * GC_SIGNATURE; 
+					return (req)
+	|	LC1 	-> req.sign := req.sign * LC1_SIGNATURE; 
+					return (req)
+	|	LC2 	-> req.sign := req.sign * LC2_SIGNATURE; 
+					return (req)
+	|	Network -> req.sign := req.sign * NETWORK_SIGNATURE; 
+					return (req)
+	end;
+	return req
+end
+
+//-----------------------------------------------------------------------
+//    Fonction : retire la signature a la requete
+//
+//    Entree : requete de type T_req
+//-----------------------------------------------------------------------
+	
+function remove_signature (req : T_req, proc_id : T_id) : T_req is
+begin
+	
+	case proc_id of 
+		GC      ->  req.sign := req.sign / GC_SIGNATURE; 
+					req.sign := req.sign / NETWORK_SIGNATURE;
+					return (req)
+	|	Network -> if (req.source = LC1) then
+						req.sign := req.sign / LC1_SIGNATURE
+					end if;
+
+					if(req.source = LC2) then
+						req.sign := req.sign / LC2_SIGNATURE
+					end if;
+
+					
+					return (req)
+	end;
+	return req
+end
+
+
+//-----------------------------------------------------------------------
+//    Fonction : Retourne true ou false selon la requetes soit signée
+//
+//    Entree : requete de type T_req , pred  de type T_id est l'identifiant du processus precedent le processus courant
+//-----------------------------------------------------------------------
+	
+function isGoodSignature (req : T_req , pred_id : T_id) : bool is
+begin
+	case pred_id of 
+		GC     -> return (req.sign % GC_SIGNATURE) = 0 
+	|	LC1 ->  return (req.sign % LC1_SIGNATURE) = 0
+	|	LC2 ->  return (req.sign % LC2_SIGNATURE) = 0
+	|	Network   -> return (req.sign % NETWORK_SIGNATURE) = 0
+	end;
+	return false
+end
+
+//-----------------------------------------------------------------------
+//    Fonction : Retourne true ou false selon que  la ressource  soit disponible   //
+//    Entree : requete de type T_req , pred  de type T_id est l'identifiant du processus precedent le processus courant
+//-----------------------------------------------------------------------
+	
+function checkPoint (req : T_req , pred_id : T_resource) : bool is
+begin
+	case pred_id  of 
+		V1 -> return req.target = LC1 
+	|	V2 -> return req.target = LC2
+	|	Network_RES -> return true 
+	|	LC1_RES-> return true 
+	|	LC2_RES -> return true	
+	end;
+	return false
+end
+
+
+
+//---------------------------------------------
+//---------------------------------------------
+//        Process : GC
+//---------------------------------------------
+//---------------------------------------------
+
+process GC 
+                (&id: T_id, &fifo_fromNetwork: t_fifo_req, &fifo_fromEnv: t_fifo_req, &fifo_toNetwork: t_fifo_req, &fifo_toEnv: t_fifo_req) 
+is
+states Idle, Compute, Forward, SendRet, AccessDenied,Fin
+var requestEnv: T_req, ret: T_req ,idNetwork:T_id
+
+init
+
+requestEnv := REQ_NUL;
+	ret := REQ_NUL;
+	   to Idle
+
+from Idle
+	select
+		case (empty fifo_fromNetwork) of  false -> null
+		end case
+;		
+		ret := (first fifo_fromNetwork);
+		fifo_fromNetwork := (dequeue fifo_fromNetwork);
+		   to SendRet
+	[]
+		case (empty fifo_fromEnv) of  false -> null
+		end case
+;
+		requestEnv := (first fifo_fromEnv);
+		fifo_fromEnv := (dequeue fifo_fromEnv);
+		if (requestEnv.target = ID_END)  then 
+			   to Fin
+		end if;
+		if (requestEnv.target = id)  then 
+			   to Compute
+		  else 
+			   to Forward
+		end if
+	end select
+
+
+from Compute
+	ret.source := requestEnv.target;
+	ret.target := requestEnv.source;
+	ret.obj := requestEnv.obj;
+	if (hasRight(requestEnv) = true)  then 
+		ret.oper := ACK
+	  else 
+		ret.oper := NACK
+	end if;
+	   to SendRet
+
+from Forward
+	
+	/*@CHECKPOINT GC */
+	if(checkPoint(requestEnv,Network_RES)) then 
+	requestEnv:= signature(requestEnv,id);
+	if (requestEnv.target = LC1)  then 
+		case (full fifo_toNetwork) of  false -> null
+		end case
+;
+		
+		fifo_toNetwork := (enqueue(fifo_toNetwork, requestEnv))
+	end if;
+	if (requestEnv.target = LC2)  then 
+		case (full fifo_toNetwork) of  false -> null
+		end case
+;
+		fifo_toNetwork := (enqueue(fifo_toNetwork, requestEnv))
+	end if;
+	   to Idle
+	 else   
+	    
+	   /*@ RESOURCE DOESN'T EXIST*/
+	   to SendRet // à modifier 
+	end if    
+
+from SendRet
+
+		idNetwork := Network;
+	/*@ CHECK SIGN FROM NETWORK */
+	if (isGoodSignature(ret , idNetwork)) then 
+		ret:= remove_signature(ret,id);
+		case (full fifo_toEnv) of  false -> null
+		end case
+	else 
+		/*@ AccessDenied*/
+		to AccessDenied 
+	end if ;	
+			
+
+	fifo_toEnv := (enqueue(fifo_toEnv, ret));
+	   to Idle
+	   
+from AccessDenied
+	ret.source := id;
+	ret.target := Network;
+	ret.obj := requestEnv.obj;
+	ret.oper := DENIED;
+ 	
+	case (full fifo_toNetwork) of  false -> null
+	end case
+;
+	fifo_toNetwork := (enqueue(fifo_toNetwork, ret));
+	   to Idle
+
+from Fin
+	   to Fin
+
+
+
+
+
+
+//---------------------------------------------
+//---------------------------------------------
+//        Process : Network
+//---------------------------------------------
+//---------------------------------------------
+
+process Network 
+                (&id: T_id, &fifo_fromGC: t_fifo_req, &fifo_fromLC1: t_fifo_ret, &fifo_fromLC2: t_fifo_ret, &fifo_toGC: t_fifo_ret, &fifo_toLC1: t_fifo_req, &fifo_toLC2: t_fifo_req) 
+is
+states Idle, Compute, Forward, SendRet, AccessDenied, Fin
+var requestEnv: T_req, ret: T_req ,idGC: T_id , idLC:T_id 
+
+init
+
+requestEnv := REQ_NUL;
+	ret := REQ_NUL;
+	   to Idle
+
+from Idle
+	select
+		case (empty fifo_fromGC) of  false -> null
+		end case
+;
+		requestEnv := (first fifo_fromGC);
+		fifo_fromGC := (dequeue fifo_fromGC);
+		
+		
+			if (requestEnv.target = ID_END)  then 
+				   to Fin
+			end if;
+			if (requestEnv.target = id)  then 
+				   to Compute
+			  else 
+				   to Forward
+			end if
+		
+
+	[]
+		case (empty fifo_fromLC1) of  false -> null
+		end case
+;
+		ret := (first fifo_fromLC1);
+		fifo_fromLC1 := (dequeue fifo_fromLC1);
+		idLC := LC1 ;
+		   to SendRet
+	[]
+		case (empty fifo_fromLC2) of  false -> null
+		end case
+;
+		ret := (first fifo_fromLC2);
+		fifo_fromLC2 := (dequeue fifo_fromLC2);
+		idLC := LC2;
+		   to SendRet
+	end select
+
+
+from Compute
+	ret.source := requestEnv.target;
+	ret.target := requestEnv.source;
+	ret.obj := requestEnv.obj;
+	if (hasRight(requestEnv) = true)  then 
+		ret.oper := ACK
+	  else 
+		ret.oper := NACK
+	end if;
+	   to SendRet
+
+from Forward
+	idGC := GC;
+
+		/*@ CHECK SIGN FROM GC */
+	if (isGoodSignature(requestEnv , idGC)) then 
+	requestEnv:= signature(requestEnv,id);
+	if (requestEnv.target = LC1)  then 
+		case (full fifo_toLC1) of  false -> null
+		end case
+;			/*@CHECKPOINT NETWORK */
+	if(checkPoint(requestEnv,LC1_RES)) then 
+		fifo_toLC1 := (enqueue(fifo_toLC1, requestEnv))
+		end if 
+	end if;
+	if (requestEnv.target = LC2)  then 
+		case (full fifo_toLC2) of  false -> null
+		end case
+;
+	/*@CHECKPOINT NETWORK */
+	if(checkPoint(requestEnv,LC2_RES)) then 
+		fifo_toLC2 := (enqueue(fifo_toLC2, requestEnv))
+		
+		end if 
+	end if 
+
+	else 
+			
+			
+			/*@ Bad Sig request */
+				to AccessDenied 
+		end if ;
+	
+	   to Idle
+
+from SendRet
+
+	/*@ CHECK SIGN  FROM LC1/LC2*/
+	
+	if (isGoodSignature(ret , idLC)) then 
+	
+		ret:= remove_signature(ret,id);
+		case (full fifo_toGC) of  false -> null
+		end case
+		;
+		fifo_toGC := (enqueue(fifo_toGC, ret));
+		   to Idle
+		else 
+			/*@ WRONG SIGN */
+			 to AccessDenied
+	end if 		   
+
+from AccessDenied
+	ret.source := id;
+	ret.target := GC;
+	ret.obj := requestEnv.obj;
+	ret.oper := DENIED;
+ 	
+	case (full fifo_toGC) of  false -> null
+	end case
+;
+	fifo_toGC := (enqueue(fifo_toGC, ret));
+	   to Idle
+
+from Fin
+	   to Fin
+
+
+
+
+
+
+//---------------------------------------------
+//---------------------------------------------
+//        Process : LC
+//---------------------------------------------
+//---------------------------------------------
+
+process LC 
+                (&id: T_id, &fifo_fromNetwork: t_fifo_req, &fifo_toNetwork: t_fifo_ret) 
+is
+states Idle, Compute, Forward, SendRet, AccessDenied,Fin
+var requestEnv: T_req, ret: T_req ,idNetwork:T_id
+
+init
+
+requestEnv := REQ_NUL;
+	ret := REQ_NUL;
+	   to Idle
+
+from Idle
+	select
+		case (empty fifo_fromNetwork) of  false -> null
+		end case
+;
+		requestEnv := (first fifo_fromNetwork);
+		fifo_fromNetwork := (dequeue fifo_fromNetwork);
+		/*@ CHECK SIGN FROM NETWORK */
+		idNetwork:= Network;
+		if (isGoodSignature(requestEnv , idNetwork)) then 
+		requestEnv:= signature(requestEnv,id)
+			else 
+				/*@ WRONG SIGN */
+				 to AccessDenied
+		end if 	;
+			
+		if (requestEnv.target = ID_END)  then 
+			to Fin
+		end if;
+		if (requestEnv.target = id)  then 
+			   to Compute
+		  else 
+			   to Forward
+		end if
+	end select
+
+
+from Compute
+	ret.source := requestEnv.target;
+	ret.target := requestEnv.source;
+	ret.obj := requestEnv.obj;
+	ret.sign := requestEnv.sign;
+	/*@CHECKPOINT LC */
+	if(checkPoint(requestEnv, requestEnv.resource)) then 
+		if (hasRight(requestEnv) = true)  then 
+			ret.oper := ACK
+		  else 
+			ret.oper := NACK
+		end if;
+		   to SendRet
+		else 
+				/*@ RESOURCE DOESN'T EXIST*/
+				to Idle 
+		   
+	end if 	   
+
+from Forward
+	   to Idle
+
+from SendRet
+
+	case (full fifo_toNetwork) of  false -> null
+	end case
+;
+	fifo_toNetwork := (enqueue(fifo_toNetwork, ret));
+	   to Idle
+
+from AccessDenied
+	ret.source := id;
+	ret.target := Network;
+	ret.obj := requestEnv.obj;
+	ret.oper := DENIED;
+ 	
+	case (full fifo_toNetwork) of  false -> null
+	end case
+;
+	fifo_toNetwork := (enqueue(fifo_toNetwork, ret));
+	   to Idle
+from Fin
+	   to Fin
+
+
+
+
+//---------------------------------------------
+//        Component : HDLScada_Async_archi
+//---------------------------------------------
+//---------------------------------------------
+
+component HDLScada_Async_archi is
+
+var 
+	fifo_GC_Network: t_fifo_req, 
+	fifo_Network_GC: t_fifo_ret, 
+	GC_1: t_fifo_req, 
+	toContext: t_fifo_ret, 
+	fifo_LC1_Network: t_fifo_ret, 
+	fifo_LC2_Network: t_fifo_ret, 
+	fifo_Network_LC1: t_fifo_req, 
+	fifo_Network_LC2: t_fifo_req, 
+	idGC: T_id, 
+	idNetwork: T_id, 
+	idLC1: T_id, 
+	idLC2: T_id
+
+init 
+	fifo_GC_Network := {||};
+	fifo_Network_GC := {||};
+	GC_1 := {||};
+	toContext := {||};
+	fifo_LC1_Network := {||};
+	fifo_LC2_Network := {||};
+	fifo_Network_LC1 := {||};
+	fifo_Network_LC2 := {||};
+	idGC := GC;
+	idNetwork := Network;
+	idLC1 := LC1;
+	idLC2 := LC2
+
+par 
+	GC(&idGC, &fifo_Network_GC, &GC_1, &fifo_GC_Network, &toContext) 
+	 || Network(&idNetwork, &fifo_GC_Network, &fifo_LC1_Network, &fifo_LC2_Network, &fifo_Network_GC, &fifo_Network_LC1, &fifo_Network_LC2) 
+	 || LC(&idLC1, &fifo_Network_LC1, &fifo_LC1_Network) 
+	 || LC(&idLC2, &fifo_Network_LC2, &fifo_LC2_Network) 
+end
+
+
+HDLScada_Async_archi

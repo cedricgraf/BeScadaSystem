@@ -1,0 +1,1908 @@
+
+//---------------------------------------------
+// Genere le :   Wed Jan 24 18:05:44 CET 2018
+// 
+// Dans : 
+//  C:\Philippe\Dev_Et_Outils\OBPExplorer\ExemplesFiacre_CDL\PatternsSecuPhD\PhD_Modeles\Scada_Async_Genere/HDLScada_Async_archi.cdl
+//---------------------------------------------
+
+
+//--------------------------------------------------
+//         Predicats 
+//--------------------------------------------------
+
+//--------------------------------------------------
+//                 Events
+//--------------------------------------------------
+//event evt_send_ADMIN_WRITE_NW is { send ADMIN_WRITE_LC_Network from {env}1 to {fifo_GC_Network}1 }
+
+event evt_send_ADMIN_WRITE_NW is { send ADMIN_WRITE_LC_Network from {env}1 to {fifo_Network_LC1}1 }
+
+
+event evt_send_ADMIN_ACK_GC is { send ADMIN_ACK_GC from {env}1 to {GC}1 }
+
+event evt_send_ADMIN_WRITE_GC is { send ADMIN_WRITE_GC from {env}1 to {GC}1 }
+event evt_send_ADMIN_WRITE_LC1 is { send ADMIN_WRITE_LC1 from {env}1 to {GC}1 }
+event evt_send_ADMIN_WRITE_LC2 is { send ADMIN_WRITE_LC2 from {env}1 to {GC}1 }
+event evt_send_ADMIN_READ_GC is { send ADMIN_READ_GC from {env}1 to {GC}1 }
+event evt_send_ADMIN_READ_LC1 is { send ADMIN_READ_LC1 from {env}1 to {GC}1 }
+event evt_send_ADMIN_READ_LC2 is { send ADMIN_READ_LC2 from {env}1 to {GC}1 }
+event evt_send_GC_OWNER_WRITE_GC is { send GC_OWNER_WRITE_GC from {env}1 to {GC}1 }
+event evt_send_GC_OWNER_WRITE_LC1 is { send GC_OWNER_WRITE_LC1 from {env}1 to {GC}1 }
+event evt_send_GC_OWNER_WRITE_LC2 is { send GC_OWNER_WRITE_LC2 from {env}1 to {GC}1 }
+event evt_send_GC_OWNER_READ_GC is { send GC_OWNER_READ_GC from {env}1 to {GC}1 }
+event evt_send_GC_OWNER_READ_LC1 is { send GC_OWNER_READ_LC1 from {env}1 to {GC}1 }
+event evt_send_GC_OWNER_READ_LC2 is { send GC_OWNER_READ_LC2 from {env}1 to {GC}1 }
+event evt_send_LC1_OWNER_WRITE_GC is { send LC1_OWNER_WRITE_GC from {env}1 to {GC}1 }
+event evt_send_LC1_OWNER_WRITE_LC1 is { send LC1_OWNER_WRITE_LC1 from {env}1 to {GC}1 }
+event evt_send_LC1_OWNER_WRITE_LC2 is { send LC1_OWNER_WRITE_LC2 from {env}1 to {GC}1 }
+event evt_send_LC1_OWNER_READ_GC is { send LC1_OWNER_READ_GC from {env}1 to {GC}1 }
+event evt_send_LC1_OWNER_READ_LC1 is { send LC1_OWNER_READ_LC1 from {env}1 to {GC}1 }
+event evt_send_LC1_OWNER_READ_LC2 is { send LC1_OWNER_READ_LC2 from {env}1 to {GC}1 }
+event evt_send_LC2_OWNER_WRITE_GC is { send LC2_OWNER_WRITE_GC from {env}1 to {GC}1 }
+event evt_send_LC2_OWNER_WRITE_LC1 is { send LC2_OWNER_WRITE_LC1 from {env}1 to {GC}1 }
+event evt_send_LC2_OWNER_WRITE_LC2 is { send LC2_OWNER_WRITE_LC2 from {env}1 to {GC}1 }
+event evt_send_LC2_OWNER_READ_GC is { send LC2_OWNER_READ_GC from {env}1 to {GC}1 }
+event evt_send_LC2_OWNER_READ_LC1 is { send LC2_OWNER_READ_LC1 from {env}1 to {GC}1 }
+event evt_send_LC2_OWNER_READ_LC2 is { send LC2_OWNER_READ_LC2 from {env}1 to {GC}1 }
+event evt_send_UNKNOWN_WRITE_GC is { send UNKNOWN_WRITE_GC from {env}1 to {GC}1 }
+event evt_send_UNKNOWN_WRITE_LC1 is { send UNKNOWN_WRITE_LC1 from {env}1 to {GC}1 }
+event evt_send_UNKNOWN_WRITE_LC2 is { send UNKNOWN_WRITE_LC2 from {env}1 to {GC}1 }
+event evt_send_UNKNOWN_READ_GC is { send UNKNOWN_READ_GC from {env}1 to {GC}1 }
+event evt_send_UNKNOWN_READ_LC1 is { send UNKNOWN_READ_LC1 from {env}1 to {GC}1 }
+event evt_send_UNKNOWN_READ_LC2 is { send UNKNOWN_READ_LC2 from {env}1 to {GC}1 }
+event evt_recv_ADMIN_ACK_GC is { receive ADMIN_ACK_GC from {GC}1 to {env}1 }
+event evt_recv_ADMIN_ACK_LC1 is { receive ADMIN_ACK_LC1 from {GC}1 to {env}1 }
+event evt_recv_ADMIN_ACK_LC2 is { receive ADMIN_ACK_LC2 from {GC}1 to {env}1 }
+event evt_recv_ADMIN_NACK_GC is { receive ADMIN_NACK_GC from {GC}1 to {env}1 }
+event evt_recv_ADMIN_NACK_LC1 is { receive ADMIN_NACK_LC1 from {GC}1 to {env}1 }
+event evt_recv_ADMIN_NACK_LC2 is { receive ADMIN_NACK_LC2 from {GC}1 to {env}1 }
+event evt_recv_GC_OWNER_ACK_GC is { receive GC_OWNER_ACK_GC from {GC}1 to {env}1 }
+event evt_recv_GC_OWNER_ACK_LC1 is { receive GC_OWNER_ACK_LC1 from {GC}1 to {env}1 }
+event evt_recv_GC_OWNER_ACK_LC2 is { receive GC_OWNER_ACK_LC2 from {GC}1 to {env}1 }
+event evt_recv_GC_OWNER_NACK_GC is { receive GC_OWNER_NACK_GC from {GC}1 to {env}1 }
+event evt_recv_GC_OWNER_NACK_LC1 is { receive GC_OWNER_NACK_LC1 from {GC}1 to {env}1 }
+event evt_recv_GC_OWNER_NACK_LC2 is { receive GC_OWNER_NACK_LC2 from {GC}1 to {env}1 }
+event evt_recv_LC1_OWNER_ACK_GC is { receive LC1_OWNER_ACK_GC from {GC}1 to {env}1 }
+event evt_recv_LC1_OWNER_ACK_LC1 is { receive LC1_OWNER_ACK_LC1 from {GC}1 to {env}1 }
+event evt_recv_LC1_OWNER_ACK_LC2 is { receive LC1_OWNER_ACK_LC2 from {GC}1 to {env}1 }
+event evt_recv_LC1_OWNER_NACK_GC is { receive LC1_OWNER_NACK_GC from {GC}1 to {env}1 }
+event evt_recv_LC1_OWNER_NACK_LC1 is { receive LC1_OWNER_NACK_LC1 from {GC}1 to {env}1 }
+event evt_recv_LC1_OWNER_NACK_LC2 is { receive LC1_OWNER_NACK_LC2 from {GC}1 to {env}1 }
+event evt_recv_LC2_OWNER_ACK_GC is { receive LC2_OWNER_ACK_GC from {GC}1 to {env}1 }
+event evt_recv_LC2_OWNER_ACK_LC1 is { receive LC2_OWNER_ACK_LC1 from {GC}1 to {env}1 }
+event evt_recv_LC2_OWNER_ACK_LC2 is { receive LC2_OWNER_ACK_LC2 from {GC}1 to {env}1 }
+event evt_recv_LC2_OWNER_NACK_GC is { receive LC2_OWNER_NACK_GC from {GC}1 to {env}1 }
+event evt_recv_LC2_OWNER_NACK_LC1 is { receive LC2_OWNER_NACK_LC1 from {GC}1 to {env}1 }
+event evt_recv_LC2_OWNER_NACK_LC2 is { receive LC2_OWNER_NACK_LC2 from {GC}1 to {env}1 }
+event evt_recv_UNKNOWN_ACK_GC is { receive UNKNOWN_ACK_GC from {GC}1 to {env}1 }
+event evt_recv_UNKNOWN_ACK_LC1 is { receive UNKNOWN_ACK_LC1 from {GC}1 to {env}1 }
+event evt_recv_UNKNOWN_ACK_LC2 is { receive UNKNOWN_ACK_LC2 from {GC}1 to {env}1 }
+event evt_recv_UNKNOWN_NACK_GC is { receive UNKNOWN_NACK_GC from {GC}1 to {env}1 }
+event evt_recv_UNKNOWN_NACK_LC1 is { receive UNKNOWN_NACK_LC1 from {GC}1 to {env}1 }
+event evt_recv_UNKNOWN_NACK_LC2 is { receive UNKNOWN_NACK_LC2 from {GC}1 to {env}1 }
+event evt_recv_ANY is { receive ANY from {GC}1 to {env}1 }
+event evt_send_END is { send REQ_END from {env}1 to {GC}1 }
+event evt_recv_END is { receive REQ_END from {env}1 to {GC}1 }
+
+
+
+//--------------------------------------------------
+//           Activities Elementaires
+//--------------------------------------------------
+activity act_recv_ANY is 
+{ event evt_recv_ANY
+}
+
+activity act_send_END is 
+{ event evt_send_END
+}
+
+activity actElem_ADMIN_WRITE_GC is 
+{ event evt_send_ADMIN_WRITE_GC; { event evt_recv_ADMIN_ACK_GC [] event evt_recv_ADMIN_NACK_GC }
+}
+
+
+activity test2 is 
+{ event evt_send_ADMIN_ACK_GC; { event evt_recv_ADMIN_ACK_LC1 [] event evt_recv_ADMIN_NACK_LC1 }
+}
+
+
+
+activity actElem_ADMIN_WRITE_NW is 
+{ event evt_send_ADMIN_WRITE_NW
+}
+
+
+
+
+activity actElem_ADMIN_WRITE_LC1 is 
+{ event evt_send_ADMIN_WRITE_LC1; { event evt_recv_ADMIN_ACK_LC1 [] event evt_recv_ADMIN_NACK_LC1 }
+}
+
+activity actElem_ADMIN_WRITE_LC2 is 
+{ event evt_send_ADMIN_WRITE_LC2; { event evt_recv_ADMIN_ACK_LC2 [] event evt_recv_ADMIN_NACK_LC2 }
+}
+
+activity actElem_ADMIN_READ_GC is 
+{ event evt_send_ADMIN_READ_GC; { event evt_recv_ADMIN_ACK_GC [] event evt_recv_ADMIN_NACK_GC }
+}
+
+activity actElem_ADMIN_READ_LC1 is 
+{ event evt_send_ADMIN_READ_LC1; { event evt_recv_ADMIN_ACK_LC1 [] event evt_recv_ADMIN_NACK_LC1 }
+}
+
+activity actElem_ADMIN_READ_LC2 is 
+{ event evt_send_ADMIN_READ_LC2; { event evt_recv_ADMIN_ACK_LC2 [] event evt_recv_ADMIN_NACK_LC2 }
+}
+
+activity actElem_GC_OWNER_WRITE_GC is 
+{ event evt_send_GC_OWNER_WRITE_GC; { event evt_recv_GC_OWNER_ACK_GC [] event evt_recv_GC_OWNER_NACK_GC }
+}
+
+activity actElem_GC_OWNER_WRITE_LC1 is 
+{ event evt_send_GC_OWNER_WRITE_LC1; { event evt_recv_GC_OWNER_ACK_LC1 [] event evt_recv_GC_OWNER_NACK_LC1 }
+}
+
+activity actElem_GC_OWNER_WRITE_LC2 is 
+{ event evt_send_GC_OWNER_WRITE_LC2; { event evt_recv_GC_OWNER_ACK_LC2 [] event evt_recv_GC_OWNER_NACK_LC2 }
+}
+
+activity actElem_GC_OWNER_READ_GC is 
+{ event evt_send_GC_OWNER_READ_GC; { event evt_recv_GC_OWNER_ACK_GC [] event evt_recv_GC_OWNER_NACK_GC }
+}
+
+activity actElem_GC_OWNER_READ_LC1 is 
+{ event evt_send_GC_OWNER_READ_LC1; { event evt_recv_GC_OWNER_ACK_LC1 [] event evt_recv_GC_OWNER_NACK_LC1 }
+}
+
+activity actElem_GC_OWNER_READ_LC2 is 
+{ event evt_send_GC_OWNER_READ_LC2; { event evt_recv_GC_OWNER_ACK_LC2 [] event evt_recv_GC_OWNER_NACK_LC2 }
+}
+
+activity actElem_LC1_OWNER_WRITE_GC is 
+{ event evt_send_LC1_OWNER_WRITE_GC; { event evt_recv_LC1_OWNER_ACK_GC [] event evt_recv_LC1_OWNER_NACK_GC }
+}
+
+activity actElem_LC1_OWNER_WRITE_LC1 is 
+{ event evt_send_LC1_OWNER_WRITE_LC1; { event evt_recv_LC1_OWNER_ACK_LC1 [] event evt_recv_LC1_OWNER_NACK_LC1 }
+}
+
+activity actElem_LC1_OWNER_WRITE_LC2 is 
+{ event evt_send_LC1_OWNER_WRITE_LC2; { event evt_recv_LC1_OWNER_ACK_LC2 [] event evt_recv_LC1_OWNER_NACK_LC2 }
+}
+
+activity actElem_LC1_OWNER_READ_GC is 
+{ event evt_send_LC1_OWNER_READ_GC; { event evt_recv_LC1_OWNER_ACK_GC [] event evt_recv_LC1_OWNER_NACK_GC }
+}
+
+activity actElem_LC1_OWNER_READ_LC1 is 
+{ event evt_send_LC1_OWNER_READ_LC1; { event evt_recv_LC1_OWNER_ACK_LC1 [] event evt_recv_LC1_OWNER_NACK_LC1 }
+}
+
+activity actElem_LC1_OWNER_READ_LC2 is 
+{ event evt_send_LC1_OWNER_READ_LC2; { event evt_recv_LC1_OWNER_ACK_LC2 [] event evt_recv_LC1_OWNER_NACK_LC2 }
+}
+
+activity actElem_LC2_OWNER_WRITE_GC is 
+{ event evt_send_LC2_OWNER_WRITE_GC; { event evt_recv_LC2_OWNER_ACK_GC [] event evt_recv_LC2_OWNER_NACK_GC }
+}
+
+activity actElem_LC2_OWNER_WRITE_LC1 is 
+{ event evt_send_LC2_OWNER_WRITE_LC1; { event evt_recv_LC2_OWNER_ACK_LC1 [] event evt_recv_LC2_OWNER_NACK_LC1 }
+}
+
+activity actElem_LC2_OWNER_WRITE_LC2 is 
+{ event evt_send_LC2_OWNER_WRITE_LC2; { event evt_recv_LC2_OWNER_ACK_LC2 [] event evt_recv_LC2_OWNER_NACK_LC2 }
+}
+
+activity actElem_LC2_OWNER_READ_GC is 
+{ event evt_send_LC2_OWNER_READ_GC; { event evt_recv_LC2_OWNER_ACK_GC [] event evt_recv_LC2_OWNER_NACK_GC }
+}
+
+activity actElem_LC2_OWNER_READ_LC1 is 
+{ event evt_send_LC2_OWNER_READ_LC1; { event evt_recv_LC2_OWNER_ACK_LC1 [] event evt_recv_LC2_OWNER_NACK_LC1 }
+}
+
+activity actElem_LC2_OWNER_READ_LC2 is 
+{ event evt_send_LC2_OWNER_READ_LC2; { event evt_recv_LC2_OWNER_ACK_LC2 [] event evt_recv_LC2_OWNER_NACK_LC2 }
+}
+
+activity actElem_UNKNOWN_WRITE_GC is 
+{ event evt_send_UNKNOWN_WRITE_GC; { event evt_recv_UNKNOWN_ACK_GC [] event evt_recv_UNKNOWN_NACK_GC }
+}
+
+activity actElem_UNKNOWN_WRITE_LC1 is 
+{ event evt_send_UNKNOWN_WRITE_LC1; { event evt_recv_UNKNOWN_ACK_LC1 [] event evt_recv_UNKNOWN_NACK_LC1 }
+}
+
+activity actElem_UNKNOWN_WRITE_LC2 is 
+{ event evt_send_UNKNOWN_WRITE_LC2; { event evt_recv_UNKNOWN_ACK_LC2 [] event evt_recv_UNKNOWN_NACK_LC2 }
+}
+
+activity actElem_UNKNOWN_READ_GC is 
+{ event evt_send_UNKNOWN_READ_GC; { event evt_recv_UNKNOWN_ACK_GC [] event evt_recv_UNKNOWN_NACK_GC }
+}
+
+activity actElem_UNKNOWN_READ_LC1 is 
+{ event evt_send_UNKNOWN_READ_LC1; { event evt_recv_UNKNOWN_ACK_LC1 [] event evt_recv_UNKNOWN_NACK_LC1 }
+}
+
+activity actElem_UNKNOWN_READ_LC2 is 
+{ event evt_send_UNKNOWN_READ_LC2; { event evt_recv_UNKNOWN_ACK_LC2 [] event evt_recv_UNKNOWN_NACK_LC2 }
+}
+
+
+//--------------------------------------------------
+//           Activities Composees
+//--------------------------------------------------
+
+activity test is
+{
+	actElem_ADMIN_WRITE_NW
+}
+
+activity actCompo_ADMIN_GC_LC1_LC2 is 
+{ 
+    actElem_ADMIN_WRITE_GC;
+    actElem_ADMIN_WRITE_LC1;
+    actElem_ADMIN_WRITE_LC2;
+    actElem_ADMIN_READ_GC;
+    actElem_ADMIN_READ_LC1;
+    actElem_ADMIN_READ_LC2;
+    act_send_END
+}
+
+activity actCompo_GC_OWNER_GC_LC1_LC2 is 
+{ 
+    actElem_GC_OWNER_WRITE_GC;
+    actElem_GC_OWNER_WRITE_LC1;
+    actElem_GC_OWNER_WRITE_LC2;
+    actElem_GC_OWNER_READ_GC;
+    actElem_GC_OWNER_READ_LC1;
+    actElem_GC_OWNER_READ_LC2;
+    act_send_END
+}
+
+activity actCompo_LC1_OWNER_GC_LC1_LC2 is 
+{ 
+    actElem_LC1_OWNER_WRITE_GC;
+    actElem_LC1_OWNER_WRITE_LC1;
+    actElem_LC1_OWNER_WRITE_LC2;
+    actElem_LC1_OWNER_READ_GC;
+    actElem_LC1_OWNER_READ_LC1;
+    actElem_LC1_OWNER_READ_LC2;
+    act_send_END
+}
+
+activity actCompo_LC2_OWNER_GC_LC1_LC2 is 
+{ 
+    actElem_LC2_OWNER_WRITE_GC;
+    actElem_LC2_OWNER_WRITE_LC1;
+    actElem_LC2_OWNER_WRITE_LC2;
+    actElem_LC2_OWNER_READ_GC;
+    actElem_LC2_OWNER_READ_LC1;
+    actElem_LC2_OWNER_READ_LC2;
+    act_send_END
+}
+
+activity actCompo_UNKNOWN_GC_LC1_LC2 is 
+{ 
+    actElem_UNKNOWN_WRITE_GC;
+    actElem_UNKNOWN_WRITE_LC1;
+    actElem_UNKNOWN_WRITE_LC2;
+    actElem_UNKNOWN_READ_GC;
+    actElem_UNKNOWN_READ_LC1;
+    actElem_UNKNOWN_READ_LC2;
+    act_send_END
+}
+
+
+//--------------------------------------------------
+//           Observateurs Elementaires
+//--------------------------------------------------
+property pty_actElem_ADMIN_WRITE_GC_allowed is 
+{ 
+  start         -- / / evt_send_ADMIN_WRITE_GC  /  -> waitRet;
+  waitRet -- / / evt_recv_ADMIN_ACK_GC  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_ADMIN_WRITE_LC1_allowed is 
+{ 
+  start         -- / / evt_send_ADMIN_WRITE_LC1  /  -> waitRet;
+  waitRet -- / / evt_recv_ADMIN_ACK_LC1  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_ADMIN_WRITE_LC2_allowed is 
+{ 
+  start         -- / / evt_send_ADMIN_WRITE_LC2  /  -> waitRet;
+  waitRet -- / / evt_recv_ADMIN_ACK_LC2  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_ADMIN_READ_GC_allowed is 
+{ 
+  start         -- / / evt_send_ADMIN_READ_GC  /  -> waitRet;
+  waitRet -- / / evt_recv_ADMIN_ACK_GC  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_ADMIN_READ_LC1_allowed is 
+{ 
+  start         -- / / evt_send_ADMIN_READ_LC1  /  -> waitRet;
+  waitRet -- / / evt_recv_ADMIN_ACK_LC1  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_ADMIN_READ_LC2_allowed is 
+{ 
+  start         -- / / evt_send_ADMIN_READ_LC2  /  -> waitRet;
+  waitRet -- / / evt_recv_ADMIN_ACK_LC2  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_GC_OWNER_WRITE_GC_allowed is 
+{ 
+  start         -- / / evt_send_GC_OWNER_WRITE_GC  /  -> waitRet;
+  waitRet -- / / evt_recv_GC_OWNER_ACK_GC  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_GC_OWNER_WRITE_LC1_allowed is 
+{ 
+  start         -- / / evt_send_GC_OWNER_WRITE_LC1  /  -> waitRet;
+  waitRet -- / / evt_recv_GC_OWNER_ACK_LC1  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_GC_OWNER_WRITE_LC2_allowed is 
+{ 
+  start         -- / / evt_send_GC_OWNER_WRITE_LC2  /  -> waitRet;
+  waitRet -- / / evt_recv_GC_OWNER_ACK_LC2  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_GC_OWNER_READ_GC_allowed is 
+{ 
+  start         -- / / evt_send_GC_OWNER_READ_GC  /  -> waitRet;
+  waitRet -- / / evt_recv_GC_OWNER_ACK_GC  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_GC_OWNER_READ_LC1_allowed is 
+{ 
+  start         -- / / evt_send_GC_OWNER_READ_LC1  /  -> waitRet;
+  waitRet -- / / evt_recv_GC_OWNER_ACK_LC1  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_GC_OWNER_READ_LC2_allowed is 
+{ 
+  start         -- / / evt_send_GC_OWNER_READ_LC2  /  -> waitRet;
+  waitRet -- / / evt_recv_GC_OWNER_ACK_LC2  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_LC1_OWNER_WRITE_GC_allowed is 
+{ 
+  start         -- / / evt_send_LC1_OWNER_WRITE_GC  /  -> waitRet;
+  waitRet -- / / evt_recv_LC1_OWNER_ACK_GC  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_LC1_OWNER_WRITE_LC1_allowed is 
+{ 
+  start         -- / / evt_send_LC1_OWNER_WRITE_LC1  /  -> waitRet;
+  waitRet -- / / evt_recv_LC1_OWNER_ACK_LC1  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_LC1_OWNER_WRITE_LC2_allowed is 
+{ 
+  start         -- / / evt_send_LC1_OWNER_WRITE_LC2  /  -> waitRet;
+  waitRet -- / / evt_recv_LC1_OWNER_ACK_LC2  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_LC1_OWNER_READ_GC_allowed is 
+{ 
+  start         -- / / evt_send_LC1_OWNER_READ_GC  /  -> waitRet;
+  waitRet -- / / evt_recv_LC1_OWNER_ACK_GC  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_LC1_OWNER_READ_LC1_allowed is 
+{ 
+  start         -- / / evt_send_LC1_OWNER_READ_LC1  /  -> waitRet;
+  waitRet -- / / evt_recv_LC1_OWNER_ACK_LC1  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_LC1_OWNER_READ_LC2_allowed is 
+{ 
+  start         -- / / evt_send_LC1_OWNER_READ_LC2  /  -> waitRet;
+  waitRet -- / / evt_recv_LC1_OWNER_ACK_LC2  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_LC2_OWNER_WRITE_GC_allowed is 
+{ 
+  start         -- / / evt_send_LC2_OWNER_WRITE_GC  /  -> waitRet;
+  waitRet -- / / evt_recv_LC2_OWNER_ACK_GC  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_LC2_OWNER_WRITE_LC1_allowed is 
+{ 
+  start         -- / / evt_send_LC2_OWNER_WRITE_LC1  /  -> waitRet;
+  waitRet -- / / evt_recv_LC2_OWNER_ACK_LC1  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_LC2_OWNER_WRITE_LC2_allowed is 
+{ 
+  start         -- / / evt_send_LC2_OWNER_WRITE_LC2  /  -> waitRet;
+  waitRet -- / / evt_recv_LC2_OWNER_ACK_LC2  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_LC2_OWNER_READ_GC_allowed is 
+{ 
+  start         -- / / evt_send_LC2_OWNER_READ_GC  /  -> waitRet;
+  waitRet -- / / evt_recv_LC2_OWNER_ACK_GC  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_LC2_OWNER_READ_LC1_allowed is 
+{ 
+  start         -- / / evt_send_LC2_OWNER_READ_LC1  /  -> waitRet;
+  waitRet -- / / evt_recv_LC2_OWNER_ACK_LC1  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_LC2_OWNER_READ_LC2_allowed is 
+{ 
+  start         -- / / evt_send_LC2_OWNER_READ_LC2  /  -> waitRet;
+  waitRet -- / / evt_recv_LC2_OWNER_ACK_LC2  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_UNKNOWN_WRITE_GC_allowed is 
+{ 
+  start         -- / / evt_send_UNKNOWN_WRITE_GC  /  -> waitRet;
+  waitRet -- / / evt_recv_UNKNOWN_ACK_GC  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_UNKNOWN_WRITE_LC1_allowed is 
+{ 
+  start         -- / / evt_send_UNKNOWN_WRITE_LC1  /  -> waitRet;
+  waitRet -- / / evt_recv_UNKNOWN_ACK_LC1  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_UNKNOWN_WRITE_LC2_allowed is 
+{ 
+  start         -- / / evt_send_UNKNOWN_WRITE_LC2  /  -> waitRet;
+  waitRet -- / / evt_recv_UNKNOWN_ACK_LC2  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_UNKNOWN_READ_GC_allowed is 
+{ 
+  start         -- / / evt_send_UNKNOWN_READ_GC  /  -> waitRet;
+  waitRet -- / / evt_recv_UNKNOWN_ACK_GC  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_UNKNOWN_READ_LC1_allowed is 
+{ 
+  start         -- / / evt_send_UNKNOWN_READ_LC1  /  -> waitRet;
+  waitRet -- / / evt_recv_UNKNOWN_ACK_LC1  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+property pty_actElem_UNKNOWN_READ_LC2_allowed is 
+{ 
+  start         -- / / evt_send_UNKNOWN_READ_LC2  /  -> waitRet;
+  waitRet -- / / evt_recv_UNKNOWN_ACK_LC2  / -> success;
+  waitRet -- / / evt_recv_ANY  /  -> reject
+}
+
+
+//--------------------------------------------------
+//           Observer Composes
+//--------------------------------------------------
+
+//--------------------------------------------------
+//         Contextes CDL elementaires 
+//--------------------------------------------------
+
+cdl cdl_act_recv_ANY is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      act_recv_ANY 
+    }
+
+}
+
+cdl cdl_act_send_END is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      act_send_END 
+    }
+
+}
+
+cdl cdl_actElem_ADMIN_WRITE_GC is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_ADMIN_WRITE_GC 
+    }
+
+}
+
+cdl cdl_actElem_ADMIN_WRITE_LC1 is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_ADMIN_WRITE_LC1 
+    }
+
+}
+
+cdl cdl_actElem_ADMIN_WRITE_LC2 is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_ADMIN_WRITE_LC2 
+    }
+
+}
+
+cdl cdl_actElem_ADMIN_READ_GC is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_ADMIN_READ_GC 
+    }
+
+}
+
+cdl cdl_actElem_ADMIN_READ_LC1 is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_ADMIN_READ_LC1 
+    }
+
+}
+
+cdl cdl_actElem_ADMIN_READ_LC2 is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_ADMIN_READ_LC2 
+    }
+
+}
+
+cdl cdl_actElem_GC_OWNER_WRITE_GC is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_GC_OWNER_WRITE_GC 
+    }
+
+}
+
+cdl cdl_actElem_GC_OWNER_WRITE_LC1 is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_GC_OWNER_WRITE_LC1 
+    }
+
+}
+
+cdl cdl_actElem_GC_OWNER_WRITE_LC2 is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_GC_OWNER_WRITE_LC2 
+    }
+
+}
+
+cdl cdl_actElem_GC_OWNER_READ_GC is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_GC_OWNER_READ_GC 
+    }
+
+}
+
+cdl cdl_actElem_GC_OWNER_READ_LC1 is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_GC_OWNER_READ_LC1 
+    }
+
+}
+
+cdl cdl_actElem_GC_OWNER_READ_LC2 is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_GC_OWNER_READ_LC2 
+    }
+
+}
+
+cdl cdl_actElem_LC1_OWNER_WRITE_GC is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_LC1_OWNER_WRITE_GC 
+    }
+
+}
+
+cdl cdl_actElem_LC1_OWNER_WRITE_LC1 is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_LC1_OWNER_WRITE_LC1 
+    }
+
+}
+
+cdl cdl_actElem_LC1_OWNER_WRITE_LC2 is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_LC1_OWNER_WRITE_LC2 
+    }
+
+}
+
+cdl cdl_actElem_LC1_OWNER_READ_GC is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_LC1_OWNER_READ_GC 
+    }
+
+}
+
+cdl cdl_actElem_LC1_OWNER_READ_LC1 is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_LC1_OWNER_READ_LC1 
+    }
+
+}
+
+cdl cdl_actElem_LC1_OWNER_READ_LC2 is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_LC1_OWNER_READ_LC2 
+    }
+
+}
+
+cdl cdl_actElem_LC2_OWNER_WRITE_GC is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_LC2_OWNER_WRITE_GC 
+    }
+
+}
+
+cdl cdl_actElem_LC2_OWNER_WRITE_LC1 is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_LC2_OWNER_WRITE_LC1 
+    }
+
+}
+
+cdl cdl_actElem_LC2_OWNER_WRITE_LC2 is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_LC2_OWNER_WRITE_LC2 
+    }
+
+}
+
+cdl cdl_actElem_LC2_OWNER_READ_GC is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_LC2_OWNER_READ_GC 
+    }
+
+}
+
+cdl cdl_actElem_LC2_OWNER_READ_LC1 is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_LC2_OWNER_READ_LC1 
+    }
+
+}
+
+cdl cdl_actElem_LC2_OWNER_READ_LC2 is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_LC2_OWNER_READ_LC2 
+    }
+
+}
+
+cdl cdl_actElem_UNKNOWN_WRITE_GC is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_UNKNOWN_WRITE_GC 
+    }
+
+}
+
+cdl cdl_actElem_UNKNOWN_WRITE_LC1 is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_UNKNOWN_WRITE_LC1 
+    }
+
+}
+
+cdl cdl_actElem_UNKNOWN_WRITE_LC2 is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_UNKNOWN_WRITE_LC2 
+    }
+
+}
+
+cdl cdl_actElem_UNKNOWN_READ_GC is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_UNKNOWN_READ_GC 
+    }
+
+}
+
+cdl cdl_actElem_UNKNOWN_READ_LC1 is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_UNKNOWN_READ_LC1 
+    }
+
+}
+
+cdl cdl_actElem_UNKNOWN_READ_LC2 is
+{
+    properties
+       pty_actElem_ADMIN_WRITE_GC_allowed,
+       pty_actElem_ADMIN_WRITE_LC1_allowed,
+       pty_actElem_ADMIN_WRITE_LC2_allowed,
+       pty_actElem_ADMIN_READ_GC_allowed,
+       pty_actElem_ADMIN_READ_LC1_allowed,
+       pty_actElem_ADMIN_READ_LC2_allowed,
+       pty_actElem_GC_OWNER_WRITE_GC_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC1_allowed,
+       pty_actElem_GC_OWNER_WRITE_LC2_allowed,
+       pty_actElem_GC_OWNER_READ_GC_allowed,
+       pty_actElem_GC_OWNER_READ_LC1_allowed,
+       pty_actElem_GC_OWNER_READ_LC2_allowed,
+       pty_actElem_LC1_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC1_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC1_OWNER_READ_GC_allowed,
+       pty_actElem_LC1_OWNER_READ_LC1_allowed,
+       pty_actElem_LC1_OWNER_READ_LC2_allowed,
+       pty_actElem_LC2_OWNER_WRITE_GC_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC1_allowed,
+       pty_actElem_LC2_OWNER_WRITE_LC2_allowed,
+       pty_actElem_LC2_OWNER_READ_GC_allowed,
+       pty_actElem_LC2_OWNER_READ_LC1_allowed,
+       pty_actElem_LC2_OWNER_READ_LC2_allowed,
+       pty_actElem_UNKNOWN_WRITE_GC_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC1_allowed,
+       pty_actElem_UNKNOWN_WRITE_LC2_allowed,
+       pty_actElem_UNKNOWN_READ_GC_allowed,
+       pty_actElem_UNKNOWN_READ_LC1_allowed,
+       pty_actElem_UNKNOWN_READ_LC2_allowed
+
+
+  main is { 
+      actElem_UNKNOWN_READ_LC2 
+    }
+
+}
+
+
+//--------------------------------------------------
+//         Contextes CDL composes 
+//--------------------------------------------------
+cdl cdl_actCompo_ADMIN_GC_LC1_LC2 is
+{
+ 
+  main is { 
+      actCompo_ADMIN_GC_LC1_LC2 
+ }
+}
+
+cdl cdl_actCompo_GC_OWNER_GC_LC1_LC2 is
+{
+ 
+  main is { 
+      actCompo_GC_OWNER_GC_LC1_LC2 
+ }
+}
+
+cdl cdl_actCompo_LC1_OWNER_GC_LC1_LC2 is
+{
+ 
+  main is { 
+      actCompo_LC1_OWNER_GC_LC1_LC2 
+ }
+}
+
+cdl cdl_actCompo_LC2_OWNER_GC_LC1_LC2 is
+{
+ 
+  main is { 
+      actCompo_LC2_OWNER_GC_LC1_LC2 
+ }
+}
+
+cdl cdl_actCompo_UNKNOWN_GC_LC1_LC2 is
+{
+ 
+  main is { 
+      actCompo_UNKNOWN_GC_LC1_LC2 
+ }
+}
+
+cdl actCompo_ALL is
+{
+
+  main is {
+    actCompo_ADMIN_GC_LC1_LC2 ||
+    actCompo_GC_OWNER_GC_LC1_LC2 ||
+    actCompo_LC1_OWNER_GC_LC1_LC2 ||
+    actCompo_LC1_OWNER_GC_LC1_LC2 ||
+    actCompo_UNKNOWN_GC_LC1_LC2 
+ }
+}
+
+
+cdl test_1 is
+{
+	main is {
+		actElem_ADMIN_WRITE_NW
+	}
+}
+
+cdl test_2 is
+{
+	main is {
+		test2
+	}
+}
+
+
+
+
